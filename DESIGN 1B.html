@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  require_signing = true
+</body>
+</html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nderi Designs | Graphic Design</title>
+<meta name="description" content="Nderi Designs: poster, flyer, business card, brochure, banner, billboard, campaign poster and thumbnail design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e10; --surface:#18181b; --text:#f4f2ee; --muted:#a09d97;
+    --accent:#ff5a36; --accent2:#ffd23f; --radius:12px;
+    --font:'Poppins',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:50;background:rgba(14,14,16,.88);backdrop-filter:blur(10px);border-bottom:1px solid #26262b}
+  nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
+  .logo span{color:var(--accent)}
+  nav ul{display:flex;gap:24px;list-style:none}
+  nav a{font-size:.9rem;color:var(--muted);transition:color .2s}
+  nav a:hover{color:var(--text)}
+  .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+  /* Hero */
+  .hero{padding:70px 0 50px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;width:420px;height:420px;right:-140px;top:-120px;border-radius:50%;
+    background:radial-gradient(circle,var(--accent) 0%,transparent 65%);opacity:.3;filter:blur(20px)}
+  .eyebrow{display:inline-block;color:var(--accent2);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+  .hero h1{font-weight:800;font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.03em;max-width:760px}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{margin-top:18px;max-width:520px;color:var(--muted);font-size:1rem}
+  .btns{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:.88rem;transition:transform .2s;overflow-wrap:anywhere;border:0;font-family:inherit;cursor:pointer}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.wa{background:#25d366;color:#0b2e17}
+  .btn.ghost{border:1.5px solid #3a3a40;background:transparent;color:var(--text)}
+  .btn.ghost:hover{border-color:var(--text)}
+
+  section{padding:56px 0}
+  .section-title{font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.02em;margin-bottom:8px}
+  .section-sub{color:var(--muted);margin-bottom:24px;font-size:.92rem}
+
+  /* Filters */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .filter{background:var(--surface);color:var(--muted);border:1.5px solid #2a2a30;padding:7px 15px;border-radius:999px;font:inherit;font-size:.8rem;cursor:pointer;transition:all .2s}
+  .filter:hover{color:var(--text);border-color:#44444c}
+  .filter.active{background:var(--accent2);color:#111;border-color:var(--accent2);font-weight:700}
+  .filter.addcat{display:none;border-style:dashed;color:var(--accent2)}
+  body.owner .filter.addcat{display:inline-block}
+  .filters.nocats .filter:not(.addcat){display:none}
+  body:not(.owner) .filters.nocats{display:none}
+
+  /* Gallery: small boxes */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,150px));gap:12px}
+  .empty{display:none;color:var(--muted);padding:24px 0;font-size:.9rem}
+  .card{background:var(--surface);border-radius:var(--radius);overflow:hidden;cursor:pointer;position:relative;
+    transition:transform .3s,box-shadow .3s;animation:pop .4s ease both}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.5)}
+  .card.hide{display:none}
+  .thumb{aspect-ratio:4/5;width:100%;display:flex;align-items:flex-end;padding:8px;position:relative;overflow:hidden}
+  .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .thumb img{transform:scale(1.06)}
+  .thumb .ph{font-weight:800;font-size:.75rem;line-height:1.1;color:rgba(255,255,255,.92);position:relative}
+  .meta{padding:6px 8px 8px}
+  .meta h3{font-size:.7rem;font-weight:600;line-height:1.3}
+  .meta span{font-size:.6rem;color:var(--accent2)}
+  @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  .cardtools{position:absolute;top:5px;right:5px;left:5px;display:none;flex-wrap:wrap;justify-content:flex-end;gap:3px;z-index:2}
+  body.owner .cardtools{display:flex}
+  .cardtools button{border:0;background:rgba(0,0,0,.78);color:#fff;border-radius:6px;font:inherit;font-size:.58rem;padding:3px 6px;cursor:pointer}
+  .cardtools button:hover{background:var(--accent)}
+shopping.jpg;/* <length> values */
+height: 120px;
+height: 10em;
+height: 100vh;
+height: anchor-size(height);
+height: anchor-size(--my-anchor self-block, 250px);
+height: clamp(200px, anchor-size(width));
+
+/* <percentage> value */
+height: 75%;
+
+/* Keyword values */
+height: max-content;
+height: min-content;
+height: fit-content;
+height: fit-content(20em);
+height: auto;
+height: stretch;
+
+/* Global values */
+height: inherit;
+height: initial;
+height: revert;
+height: revert-layer;
+height: unset;
+  .addtile{display:none;aspect-ratio:4/5;border:2px dashed #3a3a40;border-radius:var(--radius);background:transparent;color:var(--muted);
+    align-items:center;justify-content:center;flex-direction:column;gap:6px;cursor:pointer;font:inherit;font-size:.65rem;text-align:center;padding:8px;line-height:1.3}
+  body.owner .addtile{display:flex}
+  .addtile svg{width:28px;height:28px;color:var(--accent2)}
+  .addtile:hover{border-color:var(--accent2);color:var(--text)}
+img{/* <length> values */
+height: 120px;
+height: 10em;
+height: 100vh;
+height: anchor-size(height);
+height: anchor-size(--my-anchor self-block, 250px);
+height: clamp(200px, anchor-size(width));
+
+/* <percentage> value */
+height: 75%;
+
+/* Keyword values */
+height: max-content;
+height: min-content;
+height: fit-content;
+height: fit-content(20em);
+height: auto;
+height: stretch;
+
+/* Global values */
+height: inherit;
+height: initial;
+height: revert;
+height: revert-layer;
+height: unset;}
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;overflow-y:auto}
+  .lightbox.open{display:flex}
+  .lb-inner{width:min(520px,100%,calc(62vh * .8));text-align:center}
+  .lb-img{aspect-ratio:4/5;width:100%;border-radius:var(--radius);overflow:hidden;display:flex;align-items:flex-end;padding:22px;position:relative}
+  .lb-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+  .lb-img .ph{font-weight:800;font-size:1.8rem;line-height:1.05;text-align:left;position:relative}
+  .lb-cap{margin-top:12px}
+  .lb-cap small{color:var(--accent2)}
+  .lb-cap p{color:var(--muted);font-size:.88rem;margin-top:6px;white-space:pre-line}
+  .lb-close,.lb-nav{position:absolute;background:#222;color:#fff;border:0;width:42px;height:42px;border-radius:50%;font-size:1.25rem;cursor:pointer}
+  .lb-close{top:18px;right:18px}
+  .lb-nav.prev{left:14px;top:50%}
+  .lb-nav.next{right:14px;top:50%}
+
+  /* Services: small cards */
+  .services{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,200px));gap:12px}
+  .service{background:var(--surface);padding:16px;border-radius:var(--radius);border:1px solid #26262b}
+  .service b{display:block;font-size:.92rem;margin-bottom:4px}
+  .service p{color:var(--muted);font-size:.78rem;line-height:1.45}
+  .price{color:var(--accent2);font-weight:700;font-size:.8rem;margin-top:6px}
+  .meta .price{font-size:.68rem;margin-top:2px}
+  .meta .price:empty,.lbprice:empty{display:none}
+  .lbprice{font-size:1rem;margin-top:8px}
+
+  .about{max-width:680px}
+  .about p{color:var(--muted);margin-bottom:12px;font-size:.95rem;white-space:pre-line}
+
+  .contact{text-align:center;background:var(--surface);border-radius:20px;padding:44px 20px}
+  .contact h2{font-size:clamp(1.5rem,4vw,2.4rem);letter-spacing:-.02em;margin-bottom:8px}
+  .contact p{color:var(--muted);margin-bottom:22px;font-size:.92rem}
+
+  #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#25d366;color:#0b2e17;font-weight:700;font-size:.85rem;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:200}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  .ownerlink{background:none;border:1.5px solid #3a3a40;color:var(--text);border-radius:999px;padding:5px 14px;font:inherit;font-size:.78rem;cursor:pointer}
+  .ownerlink:hover{border-color:var(--accent2);color:var(--accent2)}
+  body.owner .ownerlink{display:none}
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.8rem}
+  .ownerlink{background:none;border:0;color:var(--muted);font:inherit;font-size:.72rem;cursor:pointer;opacity:.5;margin-left:10px}
+  .ownerlink:hover{opacity:1}
+
+  /* Owner bar + floating camera */
+  .adminbar{background:var(--surface);border:1px solid #2a2a30;border-radius:var(--radius);padding:10px 12px;margin-bottom:18px;
+    display:none;gap:8px;flex-wrap:wrap;align-items:center}
+  body.owner .adminbar{display:flex}
+  .adminbar .tag{color:var(--accent2);font-size:.75rem;font-weight:600;margin-right:4px}
+  .adminbar .warn{color:#ff8a70;font-size:.72rem;flex-basis:100%}
+  .abtn{background:#26262b;color:var(--text);border:0;border-radius:999px;padding:7px 13px;font:inherit;font-size:.76rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .abtn:hover{background:#34343b}
+  .abtn.main{background:var(--accent);color:#fff;font-weight:600}
+  .abtn:disabled{opacity:.5;cursor:wait}
+
+  /* Dialogs */
+  dialog{background:var(--surface);color:var(--text);border:1px solid #333;border-radius:var(--radius);padding:22px;width:min(460px,92vw);max-height:92vh;overflow-y:auto;margin:auto}
+  dialog::backdrop{background:rgba(0,0,0,.72)}
+  dialog h3{margin-bottom:4px}
+  dialog h4{margin:18px 0 2px;font-size:.85rem;color:var(--accent2)}
+  dialog .hint{color:var(--muted);font-size:.76rem}
+  dialog label{display:block;font-size:.76rem;color:var(--muted);margin:10px 0 3px}
+  dialog input,dialog select,dialog textarea{width:100%;padding:9px 11px;border-radius:8px;border:1px solid #333;background:#0e0e10;color:var(--text);font:inherit;font-size:.86rem}
+  dialog textarea{min-height:84px;resize:vertical}
+  .dlgbtns{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin-top:16px}
+  .status{margin-right:auto;font-size:.76rem;color:var(--accent2)}
+  #catRows{max-height:48vh;overflow-y:auto}
+  .catrow{display:grid;grid-template-columns:1fr auto;gap:6px;margin-top:9px;padding:9px;background:#0e0e10;border:1px solid #2a2a30;border-radius:10px}
+  .catrow input{background:var(--surface)}
+  .catrow .cd,.catrow .cp{grid-column:1/-1}
+  dialog .check{display:flex;gap:8px;align-items:flex-start;color:var(--text)}
+  dialog .check input{width:auto;margin-top:5px}
+
+  @media(max-width:760px){
+    nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg);flex-direction:column;padding:16px 20px;gap:14px;border-bottom:1px solid #26262b}
+    nav ul.open{display:flex}
+    .menu-btn{display:block}
+    .hero{padding:48px 0 34px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">Nderi <span>Designs</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+      <ul id="menu">
+        <li><a href="#work">Work</a></li>
+        <li id="navServices"><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button class="ownerlink" id="ownerLink" type="button">Owner login</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow" id="tEyebrow"></span>
+      <h1 id="tHero"></h1>
+      <p id="tHeroSub"></p>
+      <div class="btns">
+        <a href="#work" class="btn primary">See my work</a>
+        <a href="#contact" class="btn ghost">Hire me</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-sub">Tap any piece to view it larger.</p>
+<!-- Edit and upload tools, above the categories -->
+<div class="adminbar" id="adminbar">
+  <span class="tag">Edit tools</span>
+  <button class="abtn main" id="addBtn" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Add photo</button>
+  <button class="abtn main" id="bulkBtn" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Add many</button>
+  <button class="abtn" id="catBtn" type="button">Services</button>
+  <button class="abtn" id="setBtn" type="button">Edit site</button>
+  <button class="abtn" id="dlBtn" type="button">Save works.js</button>
+  <span class="hint" id="storageNote" style="flex-basis:100%;font-size:.7rem;color:var(--muted)"></span>
+  <button class="abtn" id="impBtn" type="button">Import</button>
+  <button class="abtn" id="resetBtn" type="button">Reset</button>
+  <button class="abtn" id="logoutBtn" type="button">Log out</button>
+  <span class="warn" id="cloudWarn">Cloudinary is not set up yet. Click "Edit site" and fill in the Cloudinary section.</span>
+  <input type="file" id="boxFile" accept="image/*" hidden>
+  <input type="file" id="impFile" accept=".js,.json,text/javascript,application/json" hidden>
+</div>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty">Nothing here yet.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2 class="section-title">My Services</h2>
+      <p class="section-sub">Designs that make your message impossible to miss.</p>
+      <div class="services" id="servicesList"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <h2 class="section-title" id="tAboutTitle"></h2>
+      <p id="tAbout"></p>
+      <a href="#contact" class="btn primary" style="margin-top:6px">Let's work together</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2 id="tContactTitle"></h2>
+        <p id="tContactSub"></p>
+        <div class="btns" style="justify-content:center;margin-top:0">
+          <a class="btn wa" id="waLink" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <span id="waText"></span>
+          </a>
+          <a class="btn ghost" id="mailLink"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; <span id="yr"></span> Nderi Designs. All rights reserved.</footer>
+
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <div class="lb-inner">
+    <div class="lb-img" id="lbImg"></div>
+    <div class="lb-cap"><b id="lbTitle"></b><br><small id="lbCat"></small><p id="lbDesc"></p><div class="price lbprice" id="lbPrice"></div></div>
+  </div>
+  <button class="lb-nav next" id="lbNext" aria-label="Next">&#8250;</button>
+</div>
+
+<!-- Owner login -->
+<dialog id="loginDlg">
+  <form id="loginForm">
+    <h3>Owner login</h3>
+    <p class="hint">Enter your password to add photos and edit the site.</p>
+    <label for="passInput">Password</label>
+    <input type="password" id="passInput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+    <label class="check"><input type="checkbox" id="showPass"><span>Show password</span></label>
+    <div class="dlgbtns">
+      <span class="status" id="loginMsg" style="color:#ff8a70"></span>
+      <button type="button" class="abtn" id="loginCancel">Cancel</button>
+      <button type="submit" class="abtn main">Log in</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Services / categories -->
+<dialog id="catDlg">
+  <form id="catForm">
+    <h3>Your services</h3>
+    <p class="hint">These are your gallery categories and the cards in "My Services". Add, rename or remove them, and set a price for each.</p>
+    <div id="catRows"></div>
+    <button type="button" class="abtn" id="catAddRow" style="margin-top:12px">+ Add service</button>
+    <div class="dlgbtns">
+      <button type="button" class="abtn" id="catCancel">Cancel</button>
+      <button type="submit" class="abtn main">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Edit site text, contact and Cloudinary -->
+<dialog id="setDlg">
+  <form id="setForm">
+    <h3>Edit site</h3>
+    <h4>Top of the page</h4>
+    <label for="sEyebrow">Small title above the headline</label>
+    <input id="sEyebrow" maxlength="60">
+    <label for="sHero">Headline (put *stars* around a word to make it orange)</label>
+    <input id="sHero" maxlength="120">
+    <label for="sHeroSub">Sentence under the headline</label>
+    <textarea id="sHeroSub" style="min-height:60px" maxlength="240"></textarea>
+    <h4>About me</h4>
+    <label for="sAboutTitle">Heading</label>
+    <input id="sAboutTitle" maxlength="60">
+    <label for="sAbout">Your story, experience and tools</label>
+    <textarea id="sAbout" maxlength="1200"></textarea>
+    <h4>Contact</h4>
+    <label for="sContactTitle">Heading</label>
+    <input id="sContactTitle" maxlength="80">
+    <label for="sContactSub">Sentence under the heading</label>
+    <input id="sContactSub" maxlength="160">
+    <label for="sWhats">WhatsApp number</label>
+    <input id="sWhats" inputmode="tel" placeholder="0745903689">
+    <label for="sEmail">Email</label>
+    <input id="sEmail" type="email">
+    <h4>Cloudinary (where your photos are stored)</h4>
+    <p class="hint">Needed for uploading. Find the cloud name at the top of your Cloudinary dashboard. Create an <b>unsigned</b> upload preset in Settings, Upload. Never paste your API secret here.</p>
+    <label for="sCloud">Cloud name</label>
+    <input id="sCloud" autocapitalize="off" autocomplete="off">
+    <label for="sPreset">Unsigned upload preset name</label>
+    <input id="sPreset" autocapitalize="off" autocomplete="off">
+    <div class="dlgbtns">
+      <button type="button" class="abtn" id="setCancel">Cancel</button>
+      <button type="submit" class="abtn main">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Add / edit one photo -->
+<dialog id="workDlg">
+  <form id="workForm">
+    <h3 id="workDlgTitle">Add photo</h3>
+    <label for="fCat">Category (service)</label>
+    <select id="fCat"></select>
+    <label for="fTitle">Title</label>
+    <input id="fTitle" maxlength="80" required>
+    <label for="fDesc">Vivid description (shown when someone opens the photo)</label>
+    <textarea id="fDesc" maxlength="800" placeholder="Describe the idea, colours, mood and the client you made it for."></textarea>
+    <label for="fPrice">Price (optional), e.g. KSh 1,500</label>
+    <input id="fPrice" maxlength="40">
+    <label for="fFile">Photo from your device (uploads to Cloudinary)</label>
+    <input type="file" id="fFile" accept="image/*">
+    <label for="fUrl">Or paste an image link</label>
+    <input id="fUrl" placeholder="https://...">
+    <div class="dlgbtns">
+      <span class="status" id="workStatus"></span>
+      <button type="button" class="abtn" id="fCancel">Cancel</button>
+      <button type="submit" class="abtn main" id="workSave">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Add many photos -->
+<dialog id="bulkDlg">
+  <form id="bulkForm">
+    <h3>Add many photos</h3>
+    <p class="hint">Pick several photos at once. Each uploads to Cloudinary and becomes its own box. Use Edit on a box afterwards to rename it and write its description.</p>
+    <label for="bulkCat">Category (service)</label>
+    <select id="bulkCat"></select>
+    <label for="bulkFiles">Photos</label>
+    <input type="file" id="bulkFiles" accept="image/*" multiple>
+    <div class="dlgbtns">
+      <span class="status" id="bulkStatus"></span>
+      <button type="button" class="abtn" id="bulkCancel">Cancel</button>
+      <button type="submit" class="abtn main" id="bulkSave">Upload</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Saved site file created by "Save works.js" (optional) -->
+<script src="works.js"></script>
+<script>
+/* ============================================================
+   SETTINGS YOU MAY CHANGE
+   OWNER_PASSCODE: your owner login password. Editing tools stay
+   hidden until it is entered. It is a simple lock: anyone who
+   views the page source can read it, so do not reuse a password
+   from anywhere else. Edits are saved only in the browser you
+   use, so visitors can never change what other people see.
+   Publish your changes with "Save works.js".
+   CLOUDINARY_API_KEY: your public identifier, kept here for
+   reference. Browser uploads use the cloud name and unsigned
+   preset (Edit site). NEVER put your API secret in this file.
+   ============================================================ */
+const OWNER_PASSCODE = "@Elkn254";
+const DEFAULT_UPLOAD_PRESET = "Nderi Designs";  /* your unsigned upload preset name */
+const DEFAULT_CLOUD_NAME = "ixy4qa4a";          /* your Cloudinary cloud name */
+const CLOUDINARY_API_KEY = "247771954493359";
+const STORAGE_KEY = "nderi_designs_site_v3";
+const DEFAULT_PRESET = "Nderi Designs"; /* your unsigned upload preset name */
+
+const DEFAULT_TEXT = {
+  eyebrow: "Graphic Designer",
+  heroTitle: "Design that makes people *stop* and look.",
+  heroSub: "Posters, flyers, business cards, banners, billboards and thumbnails that get your message noticed.",
+  aboutTitle: "About Me",
+  about: "I'm a graphic designer who turns ideas into clear, eye-catching visuals. Write a short paragraph here about your experience, your style and the kind of clients you enjoy working with.\n\nAdd your tools too, for example Photoshop, Illustrator, CorelDRAW, Canva or Figma.",
+  contactTitle: "Have a project in mind?",
+  contactSub: "Tell me what you need and I'll get back to you quickly.",
+  whatsapp: "0745903689",
+  email: "elikanahnderi23@gmail.com"
+};
+const DEFAULT_CATS = [
+  {name:"Poster Design", desc:"Event, promotion and announcement posters that stop people in their tracks."},
+  {name:"Flyer Design", desc:"Clear, eye-catching flyers for businesses, events and offers."},
+  {name:"Business Card Design", desc:"Sharp cards that make a strong first impression."},
+  {name:"Brochure Design", desc:"Well-organised brochures that tell your story."},
+  {name:"Banner Design", desc:"Roll-up, web and event banners built to be seen from far."},
+  {name:"Billboard Design", desc:"Big, bold billboard layouts that read in seconds."},
+  {name:"Campaign Poster Design", desc:"Campaign posters with a message people remember."},
+  {name:"Thumbnail Design", desc:"YouTube, TikTok and Instagram thumbnails that win the click."}
+];
+
+/* ---------- Code below: no need to edit ---------- */
+const GRADS = [
+  ["#ff5a36","#ffb347"],["#6a11cb","#2575fc"],["#11998e","#38ef7d"],
+  ["#f953c6","#b91d73"],["#232526","#ff5a36"],["#00c6ff","#0072ff"],
+  ["#ffd23f","#ee4266"],["#3a1c71","#d76d77"]
+];
+const $ = id => document.getElementById(id);
+const uid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const grid = $("grid"), filtersEl = $("filters");
+const els = new Map();
+
+/* ----- data ----- */
+function cleanCats(arr){
+  const used = new Set();
+  return (Array.isArray(arr) ? arr : [])
+    .map(c => typeof c === "string" ? {name:c, desc:"", price:""} : {name:String((c && c.name) || "").trim(), desc:String((c && c.desc) || "").trim(), price:String((c && c.price) || "").trim()})
+    .filter(c => c.name && !used.has(c.name.toLowerCase()) && used.add(c.name.toLowerCase()));
+}
+function cleanWorks(arr, cats){
+  const names = cats.map(c => c.name);
+  return (Array.isArray(arr) ? arr : []).filter(w => w && typeof w === "object").map(w => ({
+    id: w.id || uid(),
+    cat: names.includes(w.cat) ? w.cat : "",
+    title: String(w.title || "Untitled"),
+    desc: String(w.desc || ""),
+    price: String(w.price || ""),
+    img: String(w.img || "")
+  }));
+}
+function cleanText(t){
+  const o = {...DEFAULT_TEXT};
+  if(t && typeof t === "object") Object.keys(DEFAULT_TEXT).forEach(k => { if(typeof t[k] === "string") o[k] = t[k]; });
+  return o;
+}
+function cleanSite(o){
+  const cats = (o && Array.isArray(o.categories)) ? cleanCats(o.categories) : cleanCats(DEFAULT_CATS);
+  const st = (o && o.settings) || {};
+  return {
+    categories: cats,
+    works: cleanWorks(o && o.works, cats),
+    text: cleanText(o && o.text),
+    settings: {cloudName:String(st.cloudName || DEFAULT_CLOUD_NAME).trim(), preset:String(st.preset || DEFAULT_UPLOAD_PRESET).trim()}
+  };
+}
+function loadSite(){
+  try{
+    const s = localStorage.getItem(STORAGE_KEY);
+    if(s) return cleanSite(JSON.parse(s));
+  }catch(e){}
+  if(window.SAVED_SITE) return cleanSite(window.SAVED_SITE);
+  return cleanSite(null);
+}
+let site = loadSite();
+let active = "All", visible = [], current = 0, editingId = null, photoTarget = null;
+
+let toastTimer;
+function toast(msg){
+  let t=$("toast");
+  if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
+}
+let storageOK = false, fileDirty = false;
+function checkStorage(){
+  try{
+    localStorage.setItem("nd_test","1");
+    storageOK = localStorage.getItem("nd_test")==="1";
+    localStorage.removeItem("nd_test");
+  }catch(e){ storageOK = false; }
+  return storageOK;
+}
+function markDirty(on){
+  fileDirty = on;
+  const b=$("dlBtn"); if(!b) return;
+  b.textContent = on ? "Save works.js \u25CF" : "Save works.js";
+  b.classList.toggle("main", on);
+}
+function updateStorageNote(){
+  const n=$("storageNote"); if(!n) return;
+  if(storageOK){ n.textContent="Changes save automatically in this browser. To show them to visitors, click Save works.js and upload that file next to index.html."; n.style.color=""; }
+  else{ n.textContent="This browser is NOT keeping your changes (private window, app preview or blocked storage). Open the file in Chrome or Safari normally. Until then, click Save works.js after every change."; n.style.color="#ff8a70"; }
+}
+function save(){
+  markDirty(true);
+  let ok = false;
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(site));
+    ok = localStorage.getItem(STORAGE_KEY) === JSON.stringify(site);
+  }catch(e){ ok = false; }
+  storageOK = ok;
+  updateStorageNote();
+  if(ok) toast("\u2713 Saved in this browser");
+  else alert("This browser could not keep your change. Click 'Save works.js' now so your work is not lost, and open the site in a normal Chrome or Safari window.");
+  return ok;
+}
+function bg(i){const g=GRADS[i%GRADS.length];return `linear-gradient(145deg,${g[0]},${g[1]})`}
+
+/* Cloudinary delivery: smaller, optimised pictures */
+function cdn(u, w){
+  const m = /^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/.exec(u || "");
+  return m ? m[1] + "f_auto,q_auto,w_" + w + "/" + m[2] : u;
+}
+const cloudReady = () => !!(site.settings.cloudName && site.settings.preset);
+
+/* ----- page text ----- */
+function waDigits(n){
+  let d = String(n).replace(/\D/g,"");
+  if(d.startsWith("0")) d = "254" + d.slice(1);
+  return d;
+}
+function waPretty(n){
+  const d = String(n).replace(/\D/g,"");
+  return d.length === 10 ? d.slice(0,4)+" "+d.slice(4,7)+" "+d.slice(7) : String(n);
+}
+function applyText(){
+  const t = site.text;
+  $("tEyebrow").textContent = t.eyebrow;
+  const h = $("tHero"); h.textContent = "";
+  t.heroTitle.split(/(\*[^*]+\*)/).forEach(part=>{
+    if(!part) return;
+    if(/^\*[^*]+\*$/.test(part)){const em=document.createElement("em");em.textContent=part.slice(1,-1);h.appendChild(em);}
+    else h.appendChild(document.createTextNode(part));
+  });
+  $("tHeroSub").textContent = t.heroSub;
+  $("tAboutTitle").textContent = t.aboutTitle;
+  $("tAbout").textContent = t.about;
+  $("tContactTitle").textContent = t.contactTitle;
+  $("tContactSub").textContent = t.contactSub;
+  $("waLink").href = "https://wa.me/" + waDigits(t.whatsapp) + "?text=" + encodeURIComponent("Hi Nderi, I'd like a design");
+  $("waText").textContent = "WhatsApp: " + waPretty(t.whatsapp);
+  $("mailLink").href = "mailto:" + t.email;
+  $("mailLink").textContent = "Email: " + t.email;
+  $("cloudWarn").style.display = cloudReady() ? "none" : "";
+}
+
+/* ----- filters, services ----- */
+function buildFilters(){
+  if(active!=="All" && !site.categories.some(c=>c.name===active)) active="All";
+  filtersEl.innerHTML="";
+  filtersEl.classList.toggle("nocats", site.categories.length===0);
+  ["All",...site.categories.map(c=>c.name)].forEach(c=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="filter"+(c===active?" active":"");
+    b.textContent=c;
+    b.onclick=()=>{active=c;
+      document.querySelectorAll(".filter:not(.addcat)").forEach(x=>x.classList.toggle("active",x===b));
+      applyFilter();};
+    filtersEl.appendChild(b);
+  });
+  const add=document.createElement("button");
+  add.type="button";add.className="filter addcat";add.textContent="+ Services";
+  add.onclick=openCatDlg;
+  filtersEl.appendChild(add);
+}
+function renderServices(){
+  const list=$("servicesList");
+  list.innerHTML="";
+  site.categories.forEach(c=>{
+    const d=document.createElement("div");d.className="service";
+    const b=document.createElement("b");b.textContent=c.name;d.appendChild(b);
+    if(c.desc){const p=document.createElement("p");p.textContent=c.desc;d.appendChild(p);}
+    if(c.price){const pr=document.createElement("div");pr.className="price";pr.textContent=c.price;d.appendChild(pr);}
+    list.appendChild(d);
+  });
+  const show=site.categories.length>0;
+  $("services").style.display=show?"":"none";
+  $("navServices").style.display=show?"":"none";
+}
+function catOptions(){
+  return '<option value="">No category</option>'+site.categories.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join("");
+}
+function fillCatSelects(){ $("fCat").innerHTML=catOptions(); $("bulkCat").innerHTML=catOptions(); }
+function refreshAll(){applyText();buildFilters();renderServices();render();fillCatSelects();}
+
+/* ----- gallery ----- */
+const CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
+function showImg(box, w, size, phClass){
+  const ph = () => {const p=document.createElement("div");p.className="ph";p.textContent=w.title;box.appendChild(p);};
+  if(!w.img){ ph(); return; }
+  const im=document.createElement("img");
+  im.alt=w.title;im.loading="lazy";
+  im.onerror=()=>{im.remove();ph();};
+  im.src=cdn(w.img,size);
+  box.appendChild(im);
+}
+function render(){
+  grid.innerHTML=""; els.clear();
+  const tile=document.createElement("button");
+  tile.type="button";tile.className="addtile";tile.id="addTile";
+  tile.innerHTML=CAM+"<span></span>";
+  tile.onclick=()=>openWorkDlg(null);
+  grid.appendChild(tile);
+  site.works.forEach((w,i)=>{
+    const card=document.createElement("article");
+    card.className="card";
+    card.style.animationDelay=(i%9)*40+"ms";
+    const thumb=document.createElement("div");
+    thumb.className="thumb";
+    thumb.style.background=bg(i);
+    showImg(thumb,w,400);
+    const meta=document.createElement("div");
+    meta.className="meta";
+    meta.innerHTML="<h3></h3><span></span><div class=\"price\"></div>";
+    meta.querySelector("h3").textContent=w.title;
+    meta.querySelector("span").textContent=w.cat;
+    meta.querySelector(".price").textContent=w.price;
+    const tools=document.createElement("div");
+    tools.className="cardtools";
+    const pb=document.createElement("button");pb.type="button";pb.textContent="Photo";
+    pb.onclick=e=>{e.stopPropagation();photoTarget=w.id;$("boxFile").click()};
+    const eb=document.createElement("button");eb.type="button";eb.textContent="Edit";
+    eb.onclick=e=>{e.stopPropagation();openWorkDlg(w.id)};
+    const db=document.createElement("button");db.type="button";db.textContent="Delete";
+    db.onclick=e=>{e.stopPropagation();deleteWork(w.id)};
+    tools.append(pb,eb,db);
+    card.append(thumb,meta,tools);
+    card.onclick=()=>openLB(w.id);
+    els.set(w.id,card);
+    grid.appendChild(card);
+  });
+  applyFilter();
+}
+function applyFilter(){
+  visible=site.works.filter(w=>active==="All"||w.cat===active);
+  site.works.forEach(w=>els.get(w.id).classList.toggle("hide",!(active==="All"||w.cat===active)));
+  $("empty").style.display=visible.length?"none":"block";
+  const t=$("addTile");
+  if(t) t.querySelector("span").textContent=active==="All"?"Add a photo and description":"Add a photo to "+active;
+}
+
+/* ----- lightbox ----- */
+const lb=$("lightbox"), lbImg=$("lbImg");
+function openLB(id){
+  current=visible.findIndex(w=>w.id===id);
+  if(current<0)return;
+  renderLB();lb.classList.add("open");document.body.style.overflow="hidden";
+}
+function renderLB(){
+  const w=visible[current];
+  lbImg.style.background=bg(site.works.indexOf(w));lbImg.innerHTML="";
+  showImg(lbImg,w,1200);
+  $("lbTitle").textContent=w.title;
+  $("lbCat").textContent=w.cat;
+  $("lbDesc").textContent=w.desc;
+  $("lbPrice").textContent=w.price;
+}
+function closeLB(){lb.classList.remove("open");document.body.style.overflow=""}
+function step(d){if(!visible.length)return;current=(current+d+visible.length)%visible.length;renderLB()}
+$("lbClose").onclick=closeLB;
+$("lbPrev").onclick=()=>step(-1);
+$("lbNext").onclick=()=>step(1);
+lb.addEventListener("click",e=>{if(e.target===lb)closeLB()});
+document.addEventListener("keydown",e=>{
+  if(!lb.classList.contains("open"))return;
+  if(e.key==="Escape")closeLB();
+  if(e.key==="ArrowLeft")step(-1);
+  if(e.key==="ArrowRight")step(1);
+});
+
+/* ----- owner mode ----- */
+function setOwner(on){
+  document.body.classList.toggle("owner",on);
+  try{ on?sessionStorage.setItem("nd_owner","1"):sessionStorage.removeItem("nd_owner"); }catch(e){}
+}
+try{ if(sessionStorage.getItem("nd_owner")==="1") setOwner(true); }catch(e){}
+
+const loginDlg=$("loginDlg");
+function openLogin(){
+  if(document.body.classList.contains("owner")) return;
+  if(typeof loginDlg.showModal!=="function"){        /* very old browsers */
+    const v=prompt("Owner password:");
+    if(v!==null){ if(v.trim()===OWNER_PASSCODE) setOwner(true); else alert("Wrong password."); }
+    return;
+  }
+  $("passInput").value="";$("loginMsg").textContent="";$("showPass").checked=false;$("passInput").type="password";
+  loginDlg.showModal();$("passInput").focus();
+}
+$("ownerLink").onclick=()=>{ $("menu").classList.remove("open"); openLogin(); };
+$("loginCancel").onclick=()=>loginDlg.close();
+$("showPass").onchange=e=>{ $("passInput").type=e.target.checked?"text":"password"; };
+$("loginForm").onsubmit=e=>{
+  e.preventDefault();
+  if($("passInput").value.trim()===OWNER_PASSCODE){ loginDlg.close(); setOwner(true); }
+  else{ $("loginMsg").textContent="Wrong password. Try again."; $("passInput").select(); }
+};
+$("logoutBtn").onclick=()=>setOwner(false);
+/* Tip: open index.html#login to get the login box straight away */
+if(/[#?&](login|owner|edit)\b/.test(location.hash+location.search) && !document.body.classList.contains("owner")) setTimeout(openLogin,250);
+
+/* ----- services editor ----- */
+const catDlg=$("catDlg");
+function addCatRow(c){
+  const row=document.createElement("div");
+  row.className="catrow";row.dataset.orig=c?c.name:"";
+  row.innerHTML='<input class="cn" placeholder="Service name, e.g. Poster Design" maxlength="40"><button type="button" class="abtn cx" aria-label="Remove">&times;</button><input class="cd" placeholder="Short description (optional)" maxlength="140"><input class="cp" placeholder="Price, e.g. From KSh 500 (optional)" maxlength="40">';
+  row.querySelector(".cn").value=c?c.name:"";
+  row.querySelector(".cd").value=c?c.desc:"";
+  row.querySelector(".cp").value=c?c.price:"";
+  row.querySelector(".cx").onclick=()=>{
+    if(row.dataset.orig && !confirm('Remove "'+row.dataset.orig+'"? Its photos stay on the site, with no category.')) return;
+    row.remove();
+  };
+  $("catRows").appendChild(row);
+  return row;
+}
+function openCatDlg(){
+  $("catRows").innerHTML="";
+  if(site.categories.length) site.categories.forEach(addCatRow); else addCatRow(null);
+  catDlg.showModal();
+}
+$("catBtn").onclick=openCatDlg;
+$("catAddRow").onclick=()=>{const r=addCatRow(null);r.querySelector(".cn").focus();};
+$("catCancel").onclick=()=>catDlg.close();
+$("catForm").onsubmit=e=>{
+  e.preventDefault();
+  const next=[], renames=new Map(), kept=new Set(), used=new Set();
+  for(const r of document.querySelectorAll("#catRows .catrow")){
+    const name=r.querySelector(".cn").value.trim(), desc=r.querySelector(".cd").value.trim(), price=r.querySelector(".cp").value.trim();
+    if(!name) continue;
+    if(used.has(name.toLowerCase())){alert('"'+name+'" is used twice. Give each service its own name.');return;}
+    used.add(name.toLowerCase());
+    next.push({name,desc,price});
+    if(r.dataset.orig){kept.add(r.dataset.orig); if(r.dataset.orig!==name) renames.set(r.dataset.orig,name);}
+  }
+  site.works.forEach(w=>{
+    if(!w.cat) return;
+    if(renames.has(w.cat)) w.cat=renames.get(w.cat);
+    else if(!kept.has(w.cat)) w.cat="";
+  });
+  if(renames.has(active)) active=renames.get(active);
+  site.categories=next;
+  save();refreshAll();catDlg.close();
+};
+
+/* ----- edit site (text, contact, Cloudinary) ----- */
+const setDlg=$("setDlg");
+const SET_FIELDS = {sEyebrow:"eyebrow", sHero:"heroTitle", sHeroSub:"heroSub", sAboutTitle:"aboutTitle", sAbout:"about", sContactTitle:"contactTitle", sContactSub:"contactSub", sWhats:"whatsapp", sEmail:"email"};
+$("setBtn").onclick=()=>{
+  Object.entries(SET_FIELDS).forEach(([id,k])=>$(id).value=site.text[k]);
+  $("sCloud").value=site.settings.cloudName;
+  $("sPreset").value=site.settings.preset;
+  setDlg.showModal();
+};
+$("setCancel").onclick=()=>setDlg.close();
+$("setForm").onsubmit=e=>{
+  e.preventDefault();
+  Object.entries(SET_FIELDS).forEach(([id,k])=>site.text[k]=$(id).value.trim());
+  site.settings.cloudName=$("sCloud").value.trim();
+  site.settings.preset=$("sPreset").value.trim();
+  save();applyText();setDlg.close();
+};
+
+/* ----- uploads ----- */
+function shrink(file){
+  return new Promise(resolve=>{
+    if(!/^image\/(jpeg|png|webp)$/.test(file.type)) return resolve(file);
+    const url=URL.createObjectURL(file), img=new Image();
+    img.onerror=()=>{URL.revokeObjectURL(url);resolve(file)};
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      const k=Math.min(1,2400/Math.max(img.width,img.height));
+      if(k===1 && file.size<1.5e6) return resolve(file);
+      const c=document.createElement("canvas");c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+      const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);
+      c.toBlob(b=>resolve(b||file),"image/jpeg",.9);
+    };
+    img.src=url;
+  });
+}
+async function uploadToCloudinary(file){
+  if(!cloudReady()) throw new Error('Set up Cloudinary first: click "Edit site" and fill in the cloud name and upload preset.');
+  const blob=await shrink(file);
+  const fd=new FormData();
+  fd.append("file",blob,(file.name||"photo").replace(/\.[^.]+$/,"")+(blob.type==="image/jpeg"?".jpg":""));
+  fd.append("upload_preset",site.settings.preset);
+  let r,j={};
+  try{
+    r=await fetch("https://api.cloudinary.com/v1_1/"+encodeURIComponent(site.settings.cloudName)+"/image/upload",{method:"POST",body:fd});
+    j=await r.json().catch(()=>({}));
+  }catch(e){ throw new Error("Could not reach Cloudinary. Check your internet connection."); }
+  if(!r.ok||!j.secure_url) throw new Error((j.error&&j.error.message)||"Upload failed.");
+  return j.secure_url;
+}
+
+/* ----- add / edit one photo ----- */
+const workDlg=$("workDlg");
+function openWorkDlg(id){
+  editingId=id||null;
+  const w=id?site.works.find(x=>x.id===id):null;
+  fillCatSelects();
+  $("workDlgTitle").textContent=w?"Edit photo":"Add photo";
+  $("fCat").value=w?w.cat:(active!=="All"?active:"");
+  $("fTitle").value=w?w.title:"";
+  $("fDesc").value=w?w.desc:"";
+  $("fPrice").value=w?w.price:"";
+  $("fFile").value="";
+  $("fUrl").value=w?w.img:"";
+  $("workStatus").textContent="";
+  $("workSave").disabled=false;
+  workDlg.showModal();$("fTitle").focus();
+}
+$("addBtn").onclick=()=>openWorkDlg(null);
+$("fCancel").onclick=()=>workDlg.close();
+$("workForm").onsubmit=async e=>{
+  e.preventDefault();
+  const existing=editingId?site.works.find(x=>x.id===editingId):null;
+  const f=$("fFile").files[0];
+  let img=$("fUrl").value.trim();
+  if(f){
+    $("workSave").disabled=true;$("workStatus").textContent="Uploading...";
+    try{ img=await uploadToCloudinary(f); }
+    catch(err){ $("workStatus").textContent="";$("workSave").disabled=false;alert(err.message);return; }
+  }
+  const data={cat:$("fCat").value,title:$("fTitle").value.trim()||"Untitled",desc:$("fDesc").value.trim(),price:$("fPrice").value.trim(),img};
+  if(existing) Object.assign(existing,data);
+  else site.works.unshift({id:uid(),...data});
+  save();render();workDlg.close();
+};
+function deleteWork(id){
+  const w=site.works.find(x=>x.id===id);
+  if(!w||!confirm('Delete "'+w.title+'" from the site? (The picture stays in your Cloudinary library.)'))return;
+  site.works=site.works.filter(x=>x.id!==id);
+  save();render();
+}
+$("boxFile").onchange=async e=>{
+  const f=e.target.files[0];e.target.value="";
+  const w=site.works.find(x=>x.id===photoTarget);
+  if(!f||!w)return;
+  try{ w.img=await uploadToCloudinary(f); }catch(err){ alert(err.message);return; }
+  save();render();
+};
+
+/* ----- add many ----- */
+const bulkDlg=$("bulkDlg");
+function titleFromName(n){
+  return n.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ").replace(/\s+/g," ").trim().replace(/\b\w/g,c=>c.toUpperCase())||"Untitled";
+}
+$("bulkBtn").onclick=()=>{
+  fillCatSelects();
+  $("bulkCat").value=active!=="All"?active:"";
+  $("bulkFiles").value="";$("bulkStatus").textContent="";$("bulkSave").disabled=false;
+  bulkDlg.showModal();
+};
+$("bulkCancel").onclick=()=>bulkDlg.close();
+$("bulkForm").onsubmit=async e=>{
+  e.preventDefault();
+  const files=[...$("bulkFiles").files];
+  if(!files.length){alert("Choose at least one photo.");return;}
+  $("bulkSave").disabled=true;
+  const cat=$("bulkCat").value, added=[], failed=[];
+  for(let i=0;i<files.length;i++){
+    $("bulkStatus").textContent="Uploading "+(i+1)+" of "+files.length+"...";
+    try{ added.push({id:uid(),cat,title:titleFromName(files[i].name),desc:"",price:"",img:await uploadToCloudinary(files[i])}); }
+    catch(err){ failed.push(files[i].name+": "+err.message); if(!cloudReady()) break; }
+  }
+  if(added.length){ site.works.unshift(...added); save(); render(); }
+  bulkDlg.close();
+  if(failed.length) alert("Some photos did not upload:\n"+failed.join("\n"));
+};
+
+/* ----- save a copy / restore ----- */
+$("dlBtn").onclick=()=>{
+  markDirty(false);
+  const text="window.SAVED_SITE = "+JSON.stringify(site,null,1)+";\n";
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([text],{type:"text/javascript"}));
+  a.download="works.js";document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$("impBtn").onclick=()=>$("impFile").click();
+$("impFile").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const t=String(r.result);
+      const o=JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1));
+      if(!o||!Array.isArray(o.works))throw 0;
+      site=cleanSite(o);active="All";save();refreshAll();
+      alert("Imported "+site.works.length+" photos.");
+    }catch(err){alert("That file could not be read. Use a works.js file saved from this site.");}
+    e.target.value="";
+  };
+  r.readAsText(f);
+};
+$("resetBtn").onclick=()=>{
+  if(!confirm("Remove the changes saved in this browser and go back to works.js (or the starting site)?"))return;
+  try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+  site=loadSite();active="All";refreshAll();
+};
+
+window.addEventListener("beforeunload",e=>{ if(fileDirty && !storageOK){ e.preventDefault(); e.returnValue=""; } });
+
+/* ----- menu ----- */
+const menu=$("menu");
+$("menuBtn").onclick=()=>menu.classList.toggle("open");
+menu.querySelectorAll("a").forEach(a=>a.onclick=()=>menu.classList.remove("open"));
+
+$("yr").textContent=new Date().getFullYear();
+checkStorage();
+updateStorageNote();
+refreshAll();
+</script>
+</body>
+</html>
